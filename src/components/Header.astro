@@ -1,0 +1,13 @@
+---
+import { MobileNav } from "./MobileNav";
+---
+
+<div class="flex items-center justify-end px-8 py-3.5">
+  <div class="lg:flex items-center space-x-3.5 hidden">
+    <a href="/" class="text-gray-700 hover:text-blue-800">Home</a>
+    <a href="/" class="text-gray-700 hover:text-blue-800">About</a>
+  </div>
+  <div class="lg:hidden block">
+    <MobileNav client:visible />
+  </div>
+</div>
