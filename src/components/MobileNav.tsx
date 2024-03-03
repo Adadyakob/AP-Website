@@ -64,7 +64,7 @@ export const MobileNav = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.75}
             stroke="currentColor"
-            className="w-8 h-8 hover:text-blue-700"
+            className="w-8 h-8 hover:text-black"
           >
             <path
               strokeLinecap="round"
@@ -95,7 +95,7 @@ export const MobileNav = () => {
                 <a
                   key={index}
                   href={link.href}
-                  className="text-gray-200 text-xl hover:text-white block"
+                  className="text-white text-xl hover:text-black block"
                   onClick={handleNavigation}
                 >
                   {link.name}
