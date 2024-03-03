@@ -4,6 +4,13 @@ import { motion, AnimatePresence } from "framer-motion";
 export const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const links = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/About" },
+    { name: "Projects", href: "/Projects" },
+    { name: "Contact", href: "/Contact" },
+  ];
+
   // Animation variants for the modal
   const modalVariants = {
     hidden: {
@@ -75,24 +82,25 @@ export const MobileNav = () => {
             animate="visible"
             exit="exit"
             variants={modalVariants}
+            /* Todo, fix the background for the modal*/
             className="fixed inset-0 bg-slate-700 flex justify-center items-center"
           >
-            {/* This div now only stops propagation of the click event, without closing the modal */}
-            <div onClick={(e) => e.stopPropagation()} className="text-center">
-              <a
-                href="/"
-                className="text-gray-200 text-xl hover:text-white block"
-                onClick={handleNavigation}
-              >
-                Home
-              </a>
-              <a
-                href="/"
-                className="text-gray-200 text-xl hover:text-white block mt-4"
-                onClick={handleNavigation}
-              >
-                About
-              </a>
+            {/* This div now only stops propagation of the click event, without closing the modal*/}
+            {/* Loops though each navigation link and prints them to the browser*/}
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="text-center flex flex-col gap-3"
+            >
+              {links.map((link, index) => (
+                <a
+                  key={index}
+                  href={link.href}
+                  className="text-gray-200 text-xl hover:text-white block"
+                  onClick={handleNavigation}
+                >
+                  {link.name}
+                </a>
+              ))}
             </div>
             {/* Close button specifically for closing the modal */}
             <button
