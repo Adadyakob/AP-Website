@@ -6,48 +6,44 @@ export const MobileNav = () => {
 
   const links = [
     { name: "Home", href: "/" },
-    { name: "About", href: "/About" },
-    { name: "Projects", href: "/Projects" },
-    { name: "Contact", href: "/Contact" },
+    { name: "About", href: "/about" },
+    { name: "Projects", href: "/projects" },
+    { name: "Contact", href: "/contact" },
   ];
 
-  // Animation variants for the modal
   const modalVariants = {
     hidden: {
       opacity: 0,
-      x: "100%", // Start off-screen to the right
+      x: "100%",
       transition: { duration: 0.5, ease: "easeInOut" },
     },
     visible: {
       opacity: 1,
-      x: 0, // Move into view
+      x: 0,
       transition: { duration: 0.5, ease: "easeInOut" },
     },
     exit: {
       opacity: 0,
-      x: "100%", // Exit off-screen to the right
+      x: "100%",
       transition: { duration: 0.5, ease: "easeInOut" },
     },
   };
 
-  // Function to handle closing the modal with an animation
   const handleClose = () => {
     setIsOpen(false);
   };
 
-  // Wrap navigation link action to ensure animation plays on navigation
   const handleNavigation = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault(); // Prevent default link action
-    const targetUrl = e.currentTarget.getAttribute("href"); // Get the target URL
+    e.preventDefault();
+    const targetUrl = e.currentTarget.getAttribute("href");
 
-    handleClose(); // Close the modal with animation
+    handleClose();
 
-    // Navigate after the animation duration
     setTimeout(() => {
       if (targetUrl) {
-        window.location.href = targetUrl; // Replace with your routing logic if using a router
+        window.location.href = targetUrl;
       }
-    }, 500); // Match the duration of the exit transition
+    }, 500);
   };
 
   return (
@@ -56,8 +52,8 @@ export const MobileNav = () => {
         <button
           onClick={() => setIsOpen(true)}
           className="fixed top-4 right-4 z-50"
+          aria-label="Open menu"
         >
-          {/* SVG Button */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -65,6 +61,7 @@ export const MobileNav = () => {
             strokeWidth={1.75}
             stroke="currentColor"
             className="w-8 h-8 hover:text-black"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -82,11 +79,9 @@ export const MobileNav = () => {
             animate="visible"
             exit="exit"
             variants={modalVariants}
-            /* Todo, fix the background for the modal*/
             className="fixed inset-0 bg-slate-700 flex justify-center items-center"
+            aria-modal="true"
           >
-            {/* This div now only stops propagation of the click event, without closing the modal*/}
-            {/* Loops though each navigation link and prints them to the browser*/}
             <div
               onClick={(e) => e.stopPropagation()}
               className="text-center flex flex-col gap-3"
@@ -97,17 +92,17 @@ export const MobileNav = () => {
                   href={link.href}
                   className="text-white text-xl hover:text-black block"
                   onClick={handleNavigation}
+                  aria-label={link.name}
                 >
                   {link.name}
                 </a>
               ))}
             </div>
-            {/* Close button specifically for closing the modal */}
             <button
               onClick={handleClose}
               className="absolute top-4 right-4 m-2 z-50"
+              aria-label="Close menu"
             >
-              {/* SVG for Close Button */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -115,6 +110,7 @@ export const MobileNav = () => {
                 strokeWidth={1.75}
                 stroke="currentColor"
                 className="w-8 h-8 hover:text-black"
+                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
